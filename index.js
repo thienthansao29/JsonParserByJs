@@ -9,10 +9,23 @@ $(document).ready(function(){
     $("button").click(function () {
         textContent = $.trim(textArea.val());
 
-        var obj = $.parseJSON(textContent);
-        function decode() {
+        obj = $.parseJSON(textContent);
+        var output = '';
+        function decode(obj) {
             console.log(obj);
+            for (var property in obj) {
+                output += "{" + property+ ':';
+                if(typeof obj[property] === "object"){
+                    output +=  '[';
+                    decode(obj[property]);
+                    output +=  ']';
+                }else{
+                    output += obj[property]+'}; ';
+                }
+            }
         }
-        decode();
+
+        decode(obj);
+        alert(output);
     });
 });
