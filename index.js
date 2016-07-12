@@ -4,14 +4,11 @@
 $(document).ready(function(){
     var textArea = $("#jsonText");
     var parseArea = $("#jsonParse");
-    var parseContent = null;
-    var textContent = null;
+
     $("button").click(function () {
         textContent = $.trim(textArea.val());
 
         obj = $.parseJSON(textContent);
-        var output = '';
-        var count = 0;
 
         var print = function( o, maxLevel, level ) {
             if ( typeof level == "undefined" ) {
@@ -43,8 +40,8 @@ $(document).ready(function(){
                     str += levelStr +
                         p + ': ' + o[p] + ' </br>';
                 } else {
-                    str += levelStr +
-                        p + ': { </br>' + print( o[p], maxLevel, level + 1 ) + levelStr + '}</br>';
+                    str += '<div><p>' + levelStr +
+                        p + ': { </p>' + print( o[p], maxLevel, level + 1 ) + '<p>' + levelStr + '}</p></div>';
                 }
             }
             // Remove this if you don't want the pre tag, but make sure to remove
