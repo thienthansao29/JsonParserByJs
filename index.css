@@ -3,6 +3,8 @@ body{
     font-size: 100%;
     background-color: aliceblue;
     min-height: 100px;
+    font-family: 'DejaVu Sans Mono','Courier New',monospace;
+    font-size: 11px;
 }
 
 .button {
@@ -15,6 +17,10 @@ body{
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+}
+
+ul{
+    list-style-type: none;
 }
 
 .button1 {
@@ -41,4 +47,12 @@ body{
 
 .col2 {
     flex-grow: 1;
+}
+
+.property{
+    color: blue;
+}
+
+li.dropdown ul {
+display : none;
 }

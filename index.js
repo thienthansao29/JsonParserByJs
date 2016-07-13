@@ -22,12 +22,7 @@ $(document).ready(function(){
             // Remove this if you don't want the pre tag, but make sure to remove
             // the close pre tag on the bottom as well
             if ( level == 0 ) {
-                str = '<pre>';
-            }
-
-            var levelStr = '';
-            for ( var x = 0; x < level; x++ ) {
-                levelStr += '    ';
+                str = '<ul>';
             }
 
             if ( maxLevel != 0 && level >= maxLevel ) {
@@ -37,21 +32,24 @@ $(document).ready(function(){
 
             for ( var p in o ) {
                 if ( typeof o[p] == 'string' ) {
-                    str += levelStr +
-                        p + ': ' + o[p] + ' </br>';
+                    str += '<li　class="property"><span>' +　p + '</span>: ' + o[p] + ' </li>';
                 } else {
-                    str += '<div><p>' + levelStr +
-                        p + ': { </p>' + print( o[p], maxLevel, level + 1 ) + '<p>' + levelStr + '}</p></div>';
+                    str += '<li  class="property"><span>' +
+                        p + '</span>: { <ul>' + print( o[p], maxLevel, level + 1 ) + '</ul><span>}</span></li>';
                 }
             }
             // Remove this if you don't want the pre tag, but make sure to remove
             // the open pre tag on the top as well
             if ( level == 0 ) {
-                str += '</pre>';
+                str += '</ul>';
             }
             return str;
         };
 
         parseArea.append(print(obj));
+
+        $('li.property').click(function() {
+		   $(this).find('ul').toggle();
+		});
     });
 });
