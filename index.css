@@ -2,10 +2,8 @@ body{
     margin: 0;
     font-size: 100%;
     background-color: aliceblue;
-    min-height: 100px;
     font-family: 'DejaVu Sans Mono','Courier New',monospace;
     font-size: 12px;
-    height: 100%
 }
 
 .button {
@@ -32,14 +30,13 @@ ul{
 .container{
     display: flex;
     flex-direction: row;
-    /*padding: 5px;*/
+    height: 90vh;
 }
 .col{
-    border: 1px solid;
+    border: 1.3px solid;
+    border-radius: 3px;
     min-height: 600px;
     margin: 5px;
-    /*width: 40%;*/
-    /*padding: 5px;*/
 }
 
 .col1 {
@@ -56,6 +53,11 @@ ul{
 
 li.dropdown ul {
     display : display;
+}
+
+li.dropdown span.ulExt{
+    color: red;
+    display: none;
 }
 
 span.cursor{

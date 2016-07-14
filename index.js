@@ -8,8 +8,17 @@ $(document).ready(function(){
     $("button").click(function () {
         textContent = $.trim(textArea.val());
         obj = "";
-        obj = $.parseJSON(textContent);
-
+        if(textContent!=null){
+        	try{
+        		obj = $.parseJSON(textContent);
+        	}catch(err){
+        		parseArea.empty();//clear parse textarea
+        		parseArea.append('<p>...Error: '+ err.message +'</p>');//print json text into parse textarea
+        		return;
+        	}
+        }
+        
+        console.log(obj);
         var printObject = function( o, maxLevel, level ) {
             if ( typeof level == "undefined" ) {
                 level = 0;
@@ -31,11 +40,11 @@ $(document).ready(function(){
             }
 
             for ( var p in o ) {
-                if ( typeof o[p] == 'string' ) {
+                if ( typeof o[p] == 'string' || typeof o[p] == 'number') {
                     str += '<li class="dropdown"><span class="property">' +　p + '</span>: ' + o[p] + ' </li>';
                 } else {
                     str += '<li class="dropdown"><span class="property cursor">' +
-                        p + '</span>: <span class="toggle">{ <ul>' + printObject( o[p], maxLevel, level + 1 ) + '</ul><span class="toggle">}</span></li>';
+                        p + '</span>: <span class="toggle">{<span class="ulExt">...</span><ul>' + printObject( o[p], maxLevel, level + 1 ) + '</ul><span class="toggle">}</span></li>';
                 }
             }
 
@@ -51,6 +60,7 @@ $(document).ready(function(){
 
         $('span.property').click(function() {
 		   $(this).parent().find('ul').toggle();
+		   $(this).parent().find('span.ulExt').toggle();
 		   if($(this).parent().find('ul').is(':visible')){
 		    	$(this).parent().find('span.toggle').removeClass('toggleColor');
 		   }else{
