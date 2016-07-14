@@ -40,11 +40,15 @@ $(document).ready(function(){
             }
 
             for ( var p in o ) {
-                if ( typeof o[p] == 'string' || typeof o[p] == 'number') {
+                if ( typeof o[p] != 'object') {
                     str += '<li class="dropdown"><span class="property">' +　p + '</span>: ' + o[p] + ' </li>';
                 } else {
-                    str += '<li class="dropdown"><span class="property cursor">' +
+                	if( o[p] == null ){
+                		str += '<li class="dropdown"><span class="property">' +　p + '</span>: ' + o[p] + ' </li>';
+                	}else{
+                		str += '<li class="dropdown"><span class="property cursor">' +
                         p + '</span>: <span class="toggle">{<span class="ulExt">...</span><ul>' + printObject( o[p], maxLevel, level + 1 ) + '</ul><span class="toggle">}</span></li>';
+                	}
                 }
             }
 

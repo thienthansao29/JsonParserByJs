@@ -30,7 +30,7 @@ ul{
 .container{
     display: flex;
     flex-direction: row;
-    height: 90vh;
+    min-height: 90vh;
 }
 .col{
     border: 1.3px solid;
