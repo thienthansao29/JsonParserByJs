@@ -7,10 +7,10 @@ $(document).ready(function(){
 
     $("button").click(function () {
         textContent = $.trim(textArea.val());
-
+        obj = "";
         obj = $.parseJSON(textContent);
 
-        var print = function( o, maxLevel, level ) {
+        var printObject = function( o, maxLevel, level ) {
             if ( typeof level == "undefined" ) {
                 level = 0;
             }
@@ -19,7 +19,7 @@ $(document).ready(function(){
             }
 
             var str = '';
-            // Remove this if you don't want the pre tag, but make sure to remove
+
             // the close pre tag on the bottom as well
             if ( level == 0 ) {
                 str = '<ul>';
@@ -32,13 +32,13 @@ $(document).ready(function(){
 
             for ( var p in o ) {
                 if ( typeof o[p] == 'string' ) {
-                    str += '<li　class="property"><span>' +　p + '</span>: ' + o[p] + ' </li>';
+                    str += '<li class="dropdown"><span class="property">' +　p + '</span>: ' + o[p] + ' </li>';
                 } else {
-                    str += '<li  class="property"><span>' +
-                        p + '</span>: { <ul>' + print( o[p], maxLevel, level + 1 ) + '</ul><span>}</span></li>';
+                    str += '<li class="dropdown"><span class="property cursor">' +
+                        p + '</span>: <span class="toggle">{ <ul>' + printObject( o[p], maxLevel, level + 1 ) + '</ul><span class="toggle">}</span></li>';
                 }
             }
-            // Remove this if you don't want the pre tag, but make sure to remove
+
             // the open pre tag on the top as well
             if ( level == 0 ) {
                 str += '</ul>';
@@ -46,10 +46,16 @@ $(document).ready(function(){
             return str;
         };
 
-        parseArea.append(print(obj));
+        parseArea.empty();//clear parse textarea
+        parseArea.append(printObject(obj));//print json text into parse textarea
 
-        $('li.property').click(function() {
-		   $(this).find('ul').toggle();
+        $('span.property').click(function() {
+		   $(this).parent().find('ul').toggle();
+		   if($(this).parent().find('ul').is(':visible')){
+		    	$(this).parent().find('span.toggle').removeClass('toggleColor');
+		   }else{
+		   		$(this).parent().find('span.toggle').addClass('toggleColor');
+		   }
 		});
     });
 });

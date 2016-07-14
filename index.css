@@ -4,7 +4,8 @@ body{
     background-color: aliceblue;
     min-height: 100px;
     font-family: 'DejaVu Sans Mono','Courier New',monospace;
-    font-size: 11px;
+    font-size: 12px;
+    height: 100%
 }
 
 .button {
@@ -35,7 +36,7 @@ ul{
 }
 .col{
     border: 1px solid;
-    min-height: 500px;
+    min-height: 600px;
     margin: 5px;
     /*width: 40%;*/
     /*padding: 5px;*/
@@ -54,5 +55,22 @@ ul{
 }
 
 li.dropdown ul {
-display : none;
+    display : display;
+}
+
+span.cursor{
+    cursor: pointer;
+}
+
+p{
+    color: red;
+}
+
+.toggleColor{
+    color: red;
+}
+
+.footer{
+    bottom: 5px;
+    text-align: center;
 }
