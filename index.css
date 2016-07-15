@@ -16,6 +16,7 @@ body{
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+    border-radius: 2px;
 }
 
 ul{
@@ -24,7 +25,9 @@ ul{
 
 .button1 {
     padding: 10px 24px;
-    margin: 5px;
+    margin-left: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .container{
@@ -41,10 +44,12 @@ ul{
 
 .col1 {
     width: 40%;
+    margin-right: 15px;
 }
 
 .col2 {
     flex-grow: 1;
+    background-color: white;
 }
 
 .property{
