@@ -19,7 +19,7 @@ $(document).ready(function(){
         }
         
         console.log(obj);
-        var printObject = function( o, maxLevel, level ) {
+        var printObject = function( obj, maxLevel, level ) {
             if ( typeof level == "undefined" ) {
                 level = 0;
             }
@@ -29,7 +29,7 @@ $(document).ready(function(){
 
             var str = '';
 
-            // the close pre tag on the bottom as well
+            // the first ul tag
             if ( level == 0 ) {
                 str = '<ul>';
             }
@@ -39,20 +39,20 @@ $(document).ready(function(){
                 return str;
             }
 
-            for ( var p in o ) {
-                if ( typeof o[p] != 'object') {
-                    str += '<li class="dropdown"><span class="property">' +　p + '</span>: ' + o[p] + ' </li>';
+            for ( var p in obj ) {
+                if ( typeof obj[p] != 'object') {
+                    str += '<li class="dropdown"><span class="property">' +　p + '</span>: ' + obj[p] + ' </li>';
                 } else {
-                	if( o[p] == null ){
-                		str += '<li class="dropdown"><span class="property">' +　p + '</span>: ' + o[p] + ' </li>';
+                	if( obj[p] == null ){
+                		str += '<li class="dropdown"><span class="property">' +　p + '</span>: ' + obj[p] + ' </li>';
                 	}else{
                 		str += '<li class="dropdown"><span class="property cursor">' +
-                        p + '</span>: <span class="toggle">{<span class="ulExt">...</span><ul>' + printObject( o[p], maxLevel, level + 1 ) + '</ul><span class="toggle">}</span></li>';
+                        p + '</span>: <span class="toggle">{<span class="ulExt">...</span><ul>' + printObject( obj[p], maxLevel, level + 1 ) + '</ul><span class="toggle">}</span></li>';
                 	}
                 }
             }
 
-            // the open pre tag on the top as well
+            // close the first ul tag
             if ( level == 0 ) {
                 str += '</ul>';
             }
@@ -62,6 +62,9 @@ $(document).ready(function(){
         parseArea.empty();//clear parse textarea
         parseArea.append(printObject(obj));//print json text into parse textarea
 
+        // hide/show the content of ul tag by click
+        // use toggle() function
+        // add/remove css class toggleColor
         $('span.property').click(function() {
 		   $(this).parent().find('ul').toggle();
 		   $(this).parent().find('span.ulExt').toggle();
